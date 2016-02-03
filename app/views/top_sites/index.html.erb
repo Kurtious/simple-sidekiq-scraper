@@ -1,0 +1,58 @@
+<div id="top-sites-body">
+  <%- model_class = TopSite -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+    <%= form_tag(top_sites_path, :method => "get", class: "input-group", id: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Top Sites" %> <br \><br \>
+      <button class="btn btn-default" type="submit">Search</button>
+    </div>
+  <% end %>
+  </div>
+  <ul class="list-group sortable">
+    
+      <li class="list-group-item disabled">
+        <div class="row ">
+            
+          <div class="col-md-3">
+            <%= link_to top_sites_path(:search => params[:search], :sort_by => "rank") do %>
+            <%= model_class.human_attribute_name(:rank) %>
+            <% end %>
+          </div>
+          <div class="col-md-3">
+            <%= link_to top_sites_path(:search => params[:search], :sort_by => "name") do %>
+            <%= model_class.human_attribute_name(:name) %>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <%= link_to top_sites_path(:search => params[:search], :sort_by => "url") do %>
+            <%= model_class.human_attribute_name(:url) %>
+            <% end %>
+          </div>
+      </div>
+      
+      </li>
+      
+      <% @top_sites.each do |top_site| %>
+        <li class="list-group-item">
+          
+            <div class="row">
+              <a href="<%=  edit_top_site_path(top_site) %>" data-remote="true" style="none" class="">
+              <div class="col-md-3" data-name='rank' data-id="<%= top_site.id %>"><%= top_site.rank %></div>
+              <div class="col-md-3" data-name='name' data-id="<%= top_site.id %>" ><%= top_site.name %></div>
+              <div class="col-md-6" data-name='url' data-id="<%= top_site.id %>"><%= "http://alexa.com"+top_site.url %></div>
+              </a> 
+            </div>
+          
+        </li>
+      <% end %>  
+  </ul>
+  <%= paginate @top_sites %>
+</div>
+
+<div id="modal_edit" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>

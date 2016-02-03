@@ -1,0 +1,28 @@
+<div id="statistics-body">
+<ul class="list-group">
+	 <li class="list-group-item disabled">
+        <div class="row">
+            
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-3">url
+          </div>
+          <div class="col-md-3">browser
+          </div>
+          <div class="col-md-3">
+          </div>
+      </div>
+      
+      </li>
+<%  @data.each do |entry| %>
+  <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-3"  ><%= entry["time"] %></div>
+            <div class="col-md-3"  ><%= entry["longUrl"] %></div>
+            <div class="col-md-3"  ><%= browerName(entry["userAgent"]) %></div>
+           	<div class="col-md-3"  ><%= entry["count"] %></div>
+          </div>     
+      </li>
+<% end %>
+</ul>
+</div>
