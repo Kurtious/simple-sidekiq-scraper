@@ -27,7 +27,7 @@ Run Rails (for the sake of mock, lets stick with development enviroment )
 $ rails s
 ```
 
-## On any Browser (domain = localhost:8080) ##
+## On any Browser (domain = localhost:3000) ##
 
 ```
 GET / 
